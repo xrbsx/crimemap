@@ -20,6 +20,7 @@ def submitcrime():
 
 @app.route("/")
 def home():
+    #import pdb; pdb.set_trace()
     crimes = DB.get_all_crimes()
     crimes = json.dumps(crimes)
     return render_template("home.html", crimes=crimes)
@@ -29,6 +30,7 @@ def add():
     try:
         data = request.form.get("userinput")
         DB.add_input(data)
+        return render_template("home.html")
     except Exception as e:
         print e
     return home()
